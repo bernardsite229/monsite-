@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boîte à outils - TechBTP Tools</title>
+  <style> :root {
+    --primary: #004b8d;
+    --secondary: #f4f6f8;
+    --text: #333;
+    --border-radius: 8px;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--secondary);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  header, footer {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  h1, h2, h3, h4 {
+    margin-top: 0;
+  }
+
+  input, select, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #003866;
+  }
+
+  .box, .project {
+    background: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+margin-bottom: 20px;
+  }
+
+  .result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
+  .search-bar {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+    }
+} /* Transitions douces */
+button, .box, .project {
+  transition: all 0.3s ease;
+}
+
+/* Effet au survol */
+button:hover {
+  background-color: #0061b2;
+  transform: scale(1.02);
+}
+
+.box:hover, .project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+    /* Styles pour croquis simples */
+    .croquis-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .croquis-box {
+      text-align: center;
+      margin: 10px;
+      position: relative;
+      width: 140px;
+    }
+    .semelle-continue, .semelle-isolee, .semelle-filante {
+      background: #e3f2fd;
+      border: 2px solid #004b8d;
+      border-radius: 5px;
+      margin: auto;
+      position: relative;
+    }
+    .semelle-continue {
+      width: 120px;
+      height: 80px;
+    }
+    .semelle-continue-label {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #004b8d;
+    }
+    .semelle-isolee {
+      width: 80px;
+      height: 80px;
+    }
+    .fondation {
+      position: absolute;
+      bottom: -20px;
+      left: 15px;
+      width: 50px;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 20px solid #004b8d;
+    }
+    .semelle-isolee-label {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #004b8d;
+    }
+    .semelle-filante {
+      width: 120px;
+      height: 40px;
+    }
+.barre {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 100px;
+      height: 10px;
+      background: #004b8d;
+      border-radius: 3px;
+    }
+    .semelle-filante-label {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #004b8d;
+    }
+
+@media screen and (max-width: 600px) {
+  header h1, header h2 {
+    font-size: 20px;
+  }
+  .container {
+    padding: 10px;
+  }
+  input, select, textarea, button {
+    font-size: 15px;
+    padding: 8px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}
+  </style>
+</head>
+<body>
+
+<header>
+<nav style="background:#eee; padding:10px; text-align:center;">
+  <a href="index.html">Accueil</a>
+  <a href="convertisseurs.html">Convertisseurs</a>
+  <a href="boite.html">Boîte à outils</a>
+  <a href="suivi.html">Suivi de projets</a>
+  <a href="README.txt">README</a>
+</nav>
+  TechBTP Tools - Boîte à outils<br />
+</header>
+<section>
+  <h2>Formules de base pour les calculs BTP</h2>
+  <ul>
+    <li>
+      <strong>Poids (P)</strong> = Volume (V) × Masse volumique (ρ)
+      <br>
+      <em>Unité :</em> P en kg, V en m³, ρ en kg/m³
+    </li>
+    <li>
+      <strong>Surface (A)</strong> = Longueur (L) × Largeur (l)
+      <br>
+      <em>Unité :</em> A en m², L et l en m
+    </li>
+    <li>
+      <strong>Volume (V)</strong> = Surface (A) × Hauteur (h)
+      <br>
+      <em>Unité :</em> V en m³, A en m², h en m
+    </li>
+    <li>
+      <strong>Force (F)</strong> = Masse (m) × Accélération (g)
+      <br>
+      <em>Unité :</em> F en Newton (N), m en kg, g ≈ 9.81 m/s²
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Dosage du béton (en kg/m³)</h2>
+  <table>
+    <thead>
+      <tr><th>Type de béton</th><th>Ciment</th><th>Sable</th><th>Gravier</th><th>Eau</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Béton courant</td><td>350</td><td>700</td><td>1200</td><td>180</td></tr>
+<tr><td>Béton armé</td><td>400</td><td>750</td><td>1100</td><td>190</td></tr>
+      <tr><td>Béton prêt à l’emploi</td><td>320</td><td>680</td><td>1150</td><td>170</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Sections des semelles</h2>
+  <div class="croquis-container">
+
+    <div class="croquis-box">
+      <div class="semelle-continue"></div>
+      <div class="semelle-continue-label">Semelle continue</div>
+    </div>
+
+    <div class="croquis-box">
+      <div class="semelle-isolee">
+        <div class="fondation"></div>
+      </div>
+      <div class="semelle-isolee-label">Semelle isolée</div>
+    </div>
+
+    <div class="croquis-box">
+      <div class="semelle-filante">
+        <div class="barre"></div>
+      </div>
+      <div class="semelle-filante-label">Semelle filante</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Sécurité au chantier</h2>
+  <ul>
+    <li>Port du casque obligatoire</li>
+    <li>Utilisation de chaussures de sécurité</li>
+    <li>Port de gants adaptés</li>
+    <li>Respect des consignes de sécurité</li>
+    <li>Interdiction de fumer sur le chantier</li>
+    <li>Utilisation d'équipements de protection individuelle (EPI)</li>
+  </ul>
+  <p>
+    Pour plus d'informations sur la sécurité au chantier, consultez les ressources suivantes :
+    <ul>
+      <li><a href="https://www.travail-sante.gouv.fr/">Ministère du Travail, de l'Emploi et de l'Insertion</a></li>
+      <li><a href="https://www.oppbtp.org/">Organisme professionnel de prévention du bâtiment et des travaux publics (OPPBTP)</a></li>
+    </ul>
+  </p>
+</section>
+
+
+<footer>
+ Développé par Bernard
+</footer>
+
+</body>
+</html>

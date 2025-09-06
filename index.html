@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechBTP Tools by Bernard</title>
+  <style>
+    :root {
+      --primary: #004b8d;
+      --secondary: #f4f6f8;
+      --text: #333;
+      --border-radius: 8px;
+      --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2, h3, h4 {
+      margin-top: 0;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      box-sizing: border-box;
+    }
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #003866;
+    }
+    .box, .project {
+      background: white;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .actions button {
+      flex: 1;
+    }
+    .search-bar {
+      margin-top: 20px;
+    }
+    @media (max-width: 600px) {
+      .actions {
+        flex-direction: column;
+      }
+    }
+    /* Transitions douces */
+    button, .box, .project {
+      transition: all 0.3s ease;
+    }
+    /* Effet au survol */
+    button:hover {
+      background-color: #0061b2;
+      transform: scale(1.02);
+    }
+    .box:hover, .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo TechBTP" style="height: 60px; display: block; margin: auto;">
+    <h2>TechBTP Tools</h2>
+    <p>Outils pratiques pour le secteur BTP</p>
+    <nav style="background:#eee; padding:10px; text-align:center;">                                        
+      <a href="index.html">Accueil</a>
+      <a href="convertisseurs.html">Convertisseurs</a>
+      <a href="boite.html">Boîte à outils</a>
+      <a href="suivi.html">Suivi de projets</a>
+      <a href="README.txt">README</a>
+    </nav>
+  </header>
+  <main>
+    <section style="text-align: center; padding: 20px;">
+      <h3>Bienvenue sur TechBTP Tools !</h3>
+      <p>Nous offrons une gamme d'outils pratiques pour les professionnels du BTP.</p>
+      <button style="background-color: #004b8d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Découvrez nos outils</button>
+    </section>
+    <section style="padding: 20px;">
+      <h3>Fonctionnalités</h3>
+      <ul>
+        <li>Convertisseurs</li>
+        <li>Boîte à outils</li>
+        <li>Suivi de projets</li>
+        <li>README</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    Développé par Bernard
+  </footer>
+</body>
+</html>

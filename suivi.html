@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suivi de Projets - TechBTP Tools</title>
+  <style> 
+     :root {
+    --primary: #004b8d;
+    --secondary: #f4f6f8;
+    --text: #333;
+    --border-radius: 8px;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--secondary);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  header, footer {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  h1, h2, h3, h4 {
+    margin-top: 0;
+  }
+
+  input, select, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #003866;
+  }
+
+  .box, .project {
+    background: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+margin-bottom: 20px;
+  }
+
+  .result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
+  .search-bar {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+    }
+}
+/* Transitions douces */
+button, .box, .project {
+  transition: all 0.3s ease;
+}
+
+/* Effet au survol */
+button:hover {
+  background-color: #0061b2;
+  transform: scale(1.02);
+}
+
+.box:hover, .project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+  </style>
+</head>
+<body>
+
+<header>
+<nav style="background:#eee; padding:10px; text-align:center;">
+  <a href="index.html">Accueil</a>
+  <a href="convertisseurs.html">Convertisseurs</a>
+  <a href="boite.html">Boîte à outils</a>
+  <a href="suivi.html">Suivi de projets</a>
+  <a href="README.txt">README</a>
+</nav>
+  <h2>TechBTP Tools - Suivi de Projets</h2>
+</header>
+
+<div class="container">
+
+  <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Rechercher un projet..." oninput="renderProjects()"/>
+
+  <h3>Ajouter un projet</h3>
+  <input type="text" id="nom" placeholder="Nom du projet" />
+  <input type="date" id="date" />
+  <input type="text" id="localisation" placeholder="Localisation" />
+  <input type="text" id="chef" placeholder="Chef de chantier" />
+  <select id="statut">
+    <option>En cours</option>
+    <option>Terminé</option>
+    <option>En attente</option>
+  </select>
+  <textarea id="remarques" placeholder="Remarques..."></textarea>
+  <button onclick="ajouterProjet()">Ajouter</button>
+
+  <div id="listeProjets"></div>
+
+  <button onclick="exporterJSON()">📁 Exporter les projets en JSON</button>
+</div>
+
+<footer>
+  Développé par Bernard
+</footer>
+
+<script>
+  let projets = JSON.parse(localStorage.getItem("projets")) || [];
+
+  function ajouterProjet() {
+const nom = document.getElementById("nom").value.trim();
+    const date = document.getElementById("date").value;
+    const localisation = document.getElementById("localisation").value.trim();
+    const chef = document.getElementById("chef").value.trim();
+    const statut = document.getElementById("statut").value;
+    const remarques = document.getElementById("remarques").value.trim();
+
+    if (!nom || !date) {
+      alert("Veuillez remplir au moins le nom et la date du projet.");
+      return;
+    }
+
+    projets.push({ nom, date, localisation, chef, statut, remarques });
+    localStorage.setItem("projets", JSON.stringify(projets));
+
+    document.getElementById("nom").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("localisation").value = "";
+    document.getElementById("chef").value = "";
+    document.getElementById("statut").value = "En cours";
+    document.getElementById("remarques").value = "";
+
+    renderProjects();
+  }
+
+  function renderProjects() {
+    const liste = document.getElementById("listeProjets");
+    const recherche = document.getElementById("searchInput").value.toLowerCase();
+    liste.innerHTML = "";
+
+    projets.forEach((p, index) => {
+      if (
+        p.nom.toLowerCase().includes(recherche) ||
+p.statut.toLowerCase().includes(recherche) ||
+        p.localisation.toLowerCase().includes(recherche) ||
+        p.chef.toLowerCase().includes(recherche)
+      ) {
+        const div = document.createElement("div");
+        div.className = `project p.statut.replace(" ", "
+ ")`;
+        div.innerHTML = `
+          <h4>${p.nom} <small>${p.date}</small></h4>
+          <p><strong>Localisation:</strong>${p.localisation || "N/A"}</p>
+          <p><strong>Chef de chantier:</strong> ${p.chef || "N/A"}</p>
+          <p><strong>Statut:</strong>${p.statut}</p>
+          <p><strong>Remarques:</strong>${ p.remarques || "Aucune"}</p>
+          <div class="actions">
+            <button onclick="modifierProjet(${index})">Modifier</button>
+            <button onclick="supprimerProjet(${index})">Supprimer</button>
+          </div>
+        `;
+        liste.appendChild(div);
+      }
+    });
+  }
+
+  function modifierProjet(index) {
+    const p = projets[index];
+    document.getElementById("nom").value = p.nom;
+    document.getElementById("date").value = p.date;
+    document.getElementById("localisation").value = p.localisation;
+    document.getElementById("chef").value = p.chef;
+    document.getElementById("statut").value = p.statut;
+    document.getElementById("remarques").value = p.remarques;
+projets.splice(index, 1);
+    localStorage.setItem("projets", JSON.stringify(projets));
+    renderProjects();
+  }
+
+  function supprimerProjet(index) {
+    if (confirm("Supprimer ce projet ?")) {
+      projets.splice(index, 1);
+      localStorage.setItem("projets", JSON.stringify(projets));
+      renderProjects();
+    }
+  }
+
+  function exporterJSON() {
+    const blob = new Blob([JSON.stringify(projets, null, 2)], { type: "application/json" });
+    const lien = document.createElement("a");
+    lien.href = URL.createObjectURL(blob);
+    lien.download = "projets_TechBTP.json";
+    lien.click();
+  }
+
+  renderProjects();
+</script>
+
+</body>
+</html>

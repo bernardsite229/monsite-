@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convertisseurs - TechBTP Tools</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      margin: 0;
+    }
+    header, footer {
+      background-color: #004b8d;
+      color: white;
+      text-align: center;
+      padding: 10px 5px;
+    }
+    .container {
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    .box {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #004b8d;
+    }
+    nav a.active {
+      font-weight: bold;
+      color: #004b8d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TechBTP Tools</h1>
+    <nav style="background:#eee; padding:10px; text-align:center;">                                           
+      <a href="index.html">Accueil</a>
+      <a href="convertisseurs.html" style="font-weight: bold; color: #004b8d;">Convertisseurs</a>
+      <a href="boite.html">Boîte à outils</a>
+      <a href="suivi.html">Suivi de projets</a>
+      <a href="README.txt">README</a>
+    </nav>
+    <h2>Outils de conversion utiles en BTP</h2>
+  </header>
+  <div class="container">
+    <!-- m³ → Litres -->
+    <div class="box">
+      <label>m³ → Litres</label>
+      <input type="number" id="input1" placeholder="Ex: 50" oninput="convert()">
+      <div class="result" id="result1"></div>
+    </div>
+    <!-- cm → mètres -->
+    <div class="box">
+      <label>cm → mètres</label>
+      <input type="number" id="input2" placeholder="Ex: 150" oninput="convert()">
+      <div class="result" id="result2"></div>
+    </div>
+    <!-- kg → tonnes -->
+    <div class="box">
+      <label>kg → tonnes</label>
+      <input type="number" id="input3" placeholder="Ex: 1200" oninput="convert()">
+      <div class="result" id="result3"></div>
+    </div>
+    <!-- m² → hectares -->
+    <div class="box">
+      <label>m² → hectares</label>
+      <input type="number" id="input4" placeholder="Ex: 5000" oninput="convert()">
+      <div class="result" id="result4"></div>
+    </div>
+    <!-- Longueur → nombre de barres (longueur barre 12m par défaut) -->
+    <div class="box">
+      <label>Longueur (m) → Nombre de barres</label>
+      <input type="number" id="input5" placeholder="Ex: 6000" oninput="convert()">
+      <select id="barLength" onchange="convert()">
+        <option value="12">12 m</option>
+        <option value="6">6 m</option>
+      </select>
+      <div class="result" id="result5"></div>
+    </div>
+    <!-- mm → pouces -->
+    <div class="box">
+      <label>mm → pouces</label>
+      <input type="number" id="input6" placeholder="Ex: 25" oninput="convert()">
+      <div class="result" id="result6"></div>
+    </div>
+    <!-- bar → pascal -->
+    <div class="box">
+      <label>bar → pascal</label>
+      <input type="number" id="input7" placeholder="Ex: 2" oninput="convert()">
+      <div class="result" id="result7"></div>
+      </div>
+    <!-- Newton → kg-force -->
+    <div class="box">
+      <label>Newton → kg-force</label>
+      <input type="number" id="input8" placeholder="Ex: 100" oninput="convert()">
+      <div class="result" id="result8"></div>
+    </div>
+  <script>
+    function convert() {
+      // m³ → Litres
+      let val1 = parseFloat(document.getElementById("input1").value);
+      document.getElementById("result1").innerText = isNaN(val1) ? "" : (val1 * 1000) + " L";
+      
+      // cm → m
+      let val2 = parseFloat(document.getElementById("input2").value);
+      document.getElementById("result2").innerText = isNaN(val2) ? "" : (val2 / 100) + " m";
+      
+      // kg → tonnes
+      let val3 = parseFloat(document.getElementById("input3").value);
+      document.getElementById("result3").innerText = isNaN(val3) ? "" : (val3 / 1000) + " t";
+      
+      // m² → hectares
+      let val4 = parseFloat(document.getElementById("input4").value);
+      document.getElementById("result4").innerText = isNaN(val4) ? "" : (val4 / 10000) + " ha";
+      
+      // longueur → nombre de barres
+      let val5 = parseFloat(document.getElementById("input5").value);
+      let barLen = parseFloat(document.getElementById("barLength").value);
+      document.getElementById("result5").innerText = isNaN(val5) ? "" : Math.floor(val5 / barLen) + " barres";
+      
+      // mm → pouces
+      let val6 = parseFloat(document.getElementById("input6").value);
+      document.getElementById("result6").innerText = isNaN(val6) ? "" : (val6 / 25.4).toFixed(2) + " pouces";
+      
+      // bar → pascal
+      let val7 = parseFloat(document.getElementById("input7").value);
+      document.getElementById("result7").innerText = isNaN(val7) ? "" : (val7 * 100000) + " Pa";
+      
+      // Newton → kg-force
+      let val8 = parseFloat(document.getElementById("input8").value);
+      document.getElementById("result8").innerText = isNaN(val8) ? "" : (val8 / 9.80665).toFixed(2) + " kgf";
+    }
+  </script>
+  </div>
+<footer style="background-color: #004b8d; color: white; text-align: center; padding: 10px 5px;">Développé par Bernard</footer>
+</body>
+</html>
